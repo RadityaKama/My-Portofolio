@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - {{ profile.name if profile else 'Nama Kamu' }}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                 {{ profile.name if profile else 'Nama Kamu' }}
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tentang">Tentang Saya</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proyek">Proyek</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Admin Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="text-center py-5">
+        <div class="container">
+            <img src="{{ url_for('static', filename='image/' + profile.photo) }}" alt="Foto Profil {{ profile.name }}"
+                class="rounded-circle img-fluid mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+
+            <h1 class="display-4">Halo, saya {{ profile.name }}!</h1>
+            <p class="lead text-muted">
+                A dedicated Informatics student with a strong interest in programming, system design, and the
+                ever-evolving world of technology, striving to grow through hands-on projects and continuous learning.
+            </p>
+            <a href="#proyek" class="btn btn-primary btn-lg mt-3">Come check out my projects!</a>
+        </div>
+    </section>
+
+    <section id="tentang" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2 class="mb-3">Tentang Saya</h2>
+                    <p class="lead">
+                        {{ profile.bio }}
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-solid fa-code fa-10x text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Skills</h2>
+            <div class="row">
+                {% for skill in skills %}
+                <div class="col-md-4 text-center mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="{{ skill.icon }} fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">{{ skill.name }}</h5>
+                            <span class="badge bg-secondary">{{ skill.level }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="proyek" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Projects</h2>
+            <div class="row">
+                {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if project.image %}
+                        <img src="{{ url_for('static', filename='image/' + project.image) }}" class="card-img-top"
+                            alt="{{ project.title }}">
+                        {% else %}
+                        <img src="https://via.placeholder.com/400x250?text=Proyek" class="card-img-top"
+                            alt="Placeholder Proyek">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">
+                                {{ project.description }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            {% if project.link %}
+                            <a href="{{ project.link }}" class="btn btn-secondary" target="_blank">Lihat Proyek</a>
+                            {% else %}
+                            <a href="#" class="btn btn-secondary disabled">Link Tidak Tersedia</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 bg-dark text-white text-center">
+        <div class="container">
+            <p class="mb-0">
+                Terima kasih telah mengunjungi portfolio saya!
+            </p>
+            <p class="mb-0">Copyright &copy; {{ profile.name if profile else 'Nama Kamu' }}</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
