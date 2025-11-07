@@ -8,7 +8,7 @@ Website ini memiliki dua bagian utama:
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 * **Halaman Publik:** Menampilkan data profil, skill, dan proyek langsung dari database.
 * **Login Admin:** Otentikasi admin manual menggunakan **Flask Session**.
@@ -19,7 +19,7 @@ Website ini memiliki dua bagian utama:
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 * **Back-end:** Python, Flask
 * **Database:** MySQL
@@ -29,7 +29,7 @@ Website ini memiliki dua bagian utama:
 
 ---
 
-## ⚙️ Cara Menjalankan Proyek
+## Cara Menjalankan Proyek
 
 Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal.
 
@@ -117,7 +117,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal.
 
 ---
 
-## 🧠 Cara Kerja (Arsitektur Logika)
+## Cara Kerja 
 
 Proyek ini sengaja dibuat dalam satu file `myapp.py` untuk kesederhanaan, namun menggunakan beberapa logika kunci:
 
